@@ -1,0 +1,46 @@
+<resources>
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- colorPrimary 定义 ActionBar 的背景色 -->
+        <item name="colorPrimary">#673AB7</item>
+
+        <!-- colorPrimaryDark 定义状态栏的背景色 -->
+        <item name="colorPrimaryDark">#512DA8</item>
+
+        <!-- colorAccent 为 colorControlActivated 的默认值，该值用户显示控件的高亮状态  -->
+        <!-- 还可以设置 colorControlNormal, colorControlActivated colorControlHighlight,
+         和 colorSwitchThumbNormal 的值来控制控件的颜色.-->
+
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="BaseAppTheme">
+    </style>
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+    </style>
+    <style name="style_fragment_root">
+        <item name="android:background">@color/window_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Mian_Detail_Activity -->
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+</resources>

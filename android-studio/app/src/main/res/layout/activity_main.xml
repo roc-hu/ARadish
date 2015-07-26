@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_fragment_root">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/obar_menu"
+        android:layout_alignParentTop="true" />
+
+    <com.hcp.aradish.view.optionbar.OptionBar
+        android:id="@+id/obar_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent" />
+</RelativeLayout>

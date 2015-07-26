@@ -1,0 +1,9 @@
+<resources>
+    <item name="tagViewHolder" type="id" />
+    <string name="app_name">ARadish</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Mian_Detail_Activity -->
+    <string name="cheese_ipsum">\t\t你离开的那天，天色很暗。七月，城市下着雨。我目送你的背影消失在蚂蚁一样密集的人群中，就那样的渐渐让雨水模糊了你在我脑海里的画面。\n\t\t我在离开下雨的那场舞台剧后就没有了灵魂，可能是留在了公交站的垃圾桶旁，也有可能是被那场景的风雨吹散了。</string>
+</resources>

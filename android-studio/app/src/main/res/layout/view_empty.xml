@@ -1,0 +1,9 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/empty"
+    style="@android:style/TextAppearance.Large"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:text="无内容,下拉进行刷新!"
+    android:textAppearance="?android:attr/textAppearanceSmall" />

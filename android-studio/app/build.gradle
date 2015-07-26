@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        applicationId "com.hcp.aradish"
+        minSdkVersion 9
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+        // 默认是umeng的渠道
+//        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+        debug {
+            // No debug config
+        }
+
+        release {
+            storeFile file("../yourapp.keystore")
+            storePassword "your password"
+            keyAlias "your alias"
+            keyPassword "your password"
+        }
+    }
+
+    buildTypes {
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为ARadish_v1.0_2015-01-15_wandoujia.apk
+                        def fileName = "ARadish_v${defaultConfig.versionName}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    // 友盟多渠道打包
+    productFlavors {
+        wandoujia {}
+        qihu360 {}
+        baidu {}
+        xiaomi {}
+        tencent {}
+        taobao {}
+        //...
+    }
+
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //使用Volley AndroidManifest.xml必须要加
+    // <meta-data android:name="com.bumptech.glide.integration.volley.VolleyGlideModule" android:value="GlideModule" />
+    compile 'com.github.bumptech.glide:volley-integration:1.3.1'
+    compile 'com.mcxiaoke.volley:library:1.0.+'
+    compile 'com.google.code.gson:gson:2.2.4'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:cardview-v7:22.2.1'
+    compile 'com.android.support:palette-v7:22.2.1'
+
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'de.greenrobot:greendao:1.3.7'
+    compile 'de.greenrobot:greendao-generator:1.3.1'
+}
